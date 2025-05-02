@@ -7,6 +7,9 @@ const userController = require("../controller/users");
 
 
 
+router.route("/")
+    .get(userController.renderLoginForm)
+    .post(saveRedirectUrl, passport.authenticate("local", { failureRedirect: "/login", failureFlash: true }), userController.login);
 router.route("/signup")
     .get(userController.renderSignup)
     .post(wrapAsync(userController.signup));
